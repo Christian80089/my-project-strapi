@@ -781,6 +781,74 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiCategorieProdottiCategorieProdotti
+  extends Schema.CollectionType {
+  collectionName: 'categorie_prodottis';
+  info: {
+    singularName: 'categorie-prodotti';
+    pluralName: 'categorie-prodottis';
+    displayName: 'Categorie Prodotti';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Categoria: Attribute.String & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::categorie-prodotti.categorie-prodotti',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::categorie-prodotti.categorie-prodotti',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProdottiProdotti extends Schema.CollectionType {
+  collectionName: 'prodottis';
+  info: {
+    singularName: 'prodotti';
+    pluralName: 'prodottis';
+    displayName: 'Prodotti';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    Codice: Attribute.String & Attribute.Unique;
+    Descrizione: Attribute.Text;
+    Categoria: Attribute.Relation<
+      'api::prodotti.prodotti',
+      'oneToOne',
+      'api::categorie-prodotti.categorie-prodotti'
+    >;
+    PrezzoFornitore: Attribute.Decimal & Attribute.DefaultTo<0>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::prodotti.prodotti',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::prodotti.prodotti',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -799,6 +867,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::categorie-prodotti.categorie-prodotti': ApiCategorieProdottiCategorieProdotti;
+      'api::prodotti.prodotti': ApiProdottiProdotti;
     }
   }
 }
