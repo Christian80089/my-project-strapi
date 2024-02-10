@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categorie_prodottis",
+  "info": {
+    "singularName": "categorie-prodotti",
+    "pluralName": "categorie-prodottis",
+    "displayName": "Categorie Prodotti",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Categoria": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}

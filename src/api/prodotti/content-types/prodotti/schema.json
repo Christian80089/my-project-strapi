@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "prodottis",
+  "info": {
+    "singularName": "prodotti",
+    "pluralName": "prodottis",
+    "displayName": "Prodotti",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Codice": {
+      "type": "string",
+      "unique": true
+    },
+    "Descrizione": {
+      "type": "text"
+    },
+    "Categoria": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::categorie-prodotti.categorie-prodotti"
+    },
+    "PrezzoFornitore": {
+      "type": "decimal",
+      "default": 0
+    }
+  }
+}
